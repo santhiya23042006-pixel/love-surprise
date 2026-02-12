@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>For My Love 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  html, body {
+margin:0;
+padding:0;
+height:100%;
+width:100%;
+overflow-x:hidden;
+}
+
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+text-align:center;
+overflow-x:hidden;
+color:white;
+background:black;
+}
+
+/* PASSWORD */
+#lockScreen{
+position:fixed;width:100%;height:100%;
+background:black;display:flex;
+flex-direction:column;justify-content:center;
+align-items:center;z-index:9999;
+}
+#lockScreen input{padding:10px;border-radius:10px;border:none;}
+#lockScreen button{
+margin-top:10px;padding:8px 20px;
+border:none;border-radius:10px;
+background:#ff1e56;color:white;
+}
+
+/* INTRO */
+#intro{
+position:fixed;width:100%;height:100%;
+background:black;display:none;
+justify-content:center;align-items:center;
+font-size:30px;z-index:9998;
+animation:fadeOut 3s forwards;
+}
+@keyframes fadeOut{
+0%{opacity:1;}
+100%{opacity:0;visibility:hidden;}
+}
+.cinematicBox {
+  position: relative; /* important for overlay text */
+}
+
+.cinematicBox .caption {
+  position: absolute;
+  bottom: 10px; /* distance from bottom */
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: 0 0 5px black;
+  background: rgba(0,0,0,0.3); /* optional semi-transparent background */
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+.cinematicBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 30px auto;
+  width: 80%; /* optional */
+}
+
+.cinematicBox img {
+  width: 200px; 
+  height: 250px;
+}
+
+.cinematicBox .imageText {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  max-width: 60%;
+  line-height: 1.4;
+}
+
+
+/* BACKGROUND */
+video.bg-video{
+position:fixed;
+top:0;
+left:0;
+width:100vw;
+height:100vh;
+object-fit:cover;
+object-position:center center;
+z-index:-3;
+}
+
+
+.overlay{
+position:fixed;width:100%;height:100%;
+background:rgba(20,0,20,0.6);z-index:-2;
+}
+.gradient{
+position:fixed;width:100%;height:100%;
+background:linear-gradient(-45deg,#3b0a1e,#7b113a,#b11245,#ff4d6d);
+background-size:400% 400%;
+animation:romanticGradient 15s ease infinite;
+opacity:0.4;z-index:-1;
+}
+@keyframes romanticGradient{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* COUPLE NAME */
+.nameGlow{
+font-size:40px;
+}
+.coupleName {
+  display: inline-block;
+  animation: floatName 3s ease-in-out infinite alternate;
+  
+  font-size: 45px;
+  font-weight: bold;
+  font-family: 'Dancing Script', cursive;
+  color: #dbcacf;
+
+  text-shadow:
+    0 0 5px #ff2e63,
+    0 0 10px #ff2e63,
+    0 0 20px #ff8fab;
+}
+
+
+/* SLIDESHOW */
+.slideshow{
+width:260px;
+height:260px;
+margin:30px auto;
+position:relative;
+border-radius:20px;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.slideshow img{
+width:100%;
+height:100%;
+position:absolute;
+object-fit:cover;
+object-position:center;
+opacity:0;
+transition:1.5s;
+}
+
+.slideshow img.active{
+opacity:1;
+}
+
+.slideshow img{
+width:100%;height:100%;
+position:absolute;opacity:0;transition:1.5s;
+}
+.slideshow img.active{opacity:1;}
+
+button{
+padding:12px 25px;margin:15px;
+font-size:18px;border:none;
+border-radius:25px;cursor:pointer;
+}
+.yes{background:white;color:#ff1e56;}
+.no{background:#ff1e56;color:white;}
+
+.heartGame{
+position:absolute;font-size:25px;cursor:pointer;
+}
+
+.star{
+position:fixed;width:2px;height:2px;
+background:white;
+animation:twinkle 2s infinite alternate;
+}
+@keyframes twinkle{
+from{opacity:0.3;}
+to{opacity:1;}
+}
+
+/* SECOND PAGE */
+#secondPage{
+position:fixed;top:0;left:0;
+width:100%;height:100%;
+background:black;
+display:none;
+overflow-y:auto;
+z-index:10000;
+padding:30px;
+}
+
+.cinematicBox{
+width:280px;height:350px;
+margin:40px auto;
+overflow:hidden;border-radius:20px;
+}
+.cinematicBox img{
+width:100%;height:100%;
+object-fit:cover;
+animation:slowZoom 8s infinite alternate ease-in-out;
+border:4px solid #ff4d6d;
+border-radius:20px;
+}
+@keyframes slowZoom{
+0%{transform:scale(1);}
+100%{transform:scale(1.2);}
+}
+
+/* LOVE LETTER */
+#loveLetterPage{
+position:fixed;top:0;left:0;
+width:100%;height:100%;
+background:black;
+display:none;
+overflow-y:auto;
+z-index:11000;
+padding:40px 20px;
+
+}
+.loveletterMessage{
+font-family: Arial, Helvetica, sans-serif;
+}
+.letterBox{
+background:white;color:black;
+max-width:400px;margin:30px auto;
+padding:30px;border-radius:20px;
+line-height:1.6;
+}
+
+/* FIREWORK */
+.firework{
+position:fixed;
+font-size:20px;
+animation:explode 1s ease-out forwards;
+}
+@keyframes explode{
+0%{transform:scale(0);opacity:1;}
+100%{transform:scale(3);opacity:0;}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="song2.mp3" type="audio/mp3">
+</audio>
+
+
+<div id="lockScreen">
+<h2>Enter Secret Password 💖</h2>
+<input type="password" id="password">
+<button onclick="unlock()">Open ❤️</button>
+</div>
+
+<div id="intro">This is for you baby... 💕
+        Happy valeteins day💕
+</div>
+
+<div id="mainContent" style="display:none;">
+
+<video autoplay muted loop playsinline class="bg-video">
+<source src="romantic2.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+<div class="gradient"></div>
+
+<h1 class="nameGlow">
+<span class="coupleName">Happy valetine's day Ammu</span> ❤️ 
+</h1>
+
+<p id="typewriter"></p>
+
+<div class="slideshow">
+<img src="image8.jpg" class="active">
+
+</div>
+
+<button class="yes" onclick="startGame()">Catch My Heart 💘</button>
+<button class="no" onmouseover="moveButton(this)">No 😜</button>
+
+</div>
+
+<div id="secondPage">
+<h2>Our Beautiful Journey 💕</h2>
+<div class="cinematicBox">
+  <img src="image4.jpg">
+  <div class="caption">lnnaiku mathiri💕</div>
+</div>
+<div class="cinematicBox">
+  <img src="image6.jpg">
+<div class="caption">Eppavum unkuda iruppa💕</div>
+</div>
+<div class="cinematicBox">
+  <img src="image7.jpg">
+<div class="caption">I'm always love you💙✨💍</div>
+</div>
+<button onclick="openLetter()">Love Letter 💌</button>
+</div>
+
+<div id="loveLetterPage">
+<h2>My Forever Love ❤️</h2>
+<div class="letterBox">
+<p id="letterText"></p>
+<button onclick="closeLetter()">Come Back ❤️</button>
+</div>
+</div>
+
+<script>
+
+/* PASSWORD */
+function unlock(){
+  let pass=document.getElementById("password").value;
+  if(pass==="ammu123"){
+    document.getElementById("lockScreen").style.display="none";
+    document.getElementById("intro").style.display="flex";
+
+    let music=document.getElementById("bgMusic");
+    music.volume = 0.7;
+    music.play(); // <-- music starts only after correct password
+
+    setTimeout(()=>{
+      document.getElementById("mainContent").style.display="block";
+    },2500);
+
+  } else {
+    alert("Wrong Password 😜");
+  }
+}
+
+
+/* TYPEWRITER */
+let text="You are my today and all of my tomorrows💕";
+let i=0;
+function typeEffect(){
+if(i<text.length){
+document.getElementById("typewriter").innerHTML+=text.charAt(i);
+i++;
+setTimeout(typeEffect,70);
+}}
+typeEffect();
+
+/* MOVE NO */
+function moveButton(btn){
+btn.style.position="absolute";
+btn.style.top=Math.random()*window.innerHeight+"px";
+btn.style.left=Math.random()*window.innerWidth+"px";
+}
+
+/* SLIDESHOW */
+let slides=document.querySelectorAll(".slideshow img");
+let index=0;
+setInterval(()=>{
+slides[index].classList.remove("active");
+index=(index+1)%slides.length;
+slides[index].classList.add("active");
+},3000);
+
+/* HEART GAME */
+function startGame(){
+let count=0;
+for(let i=0;i<10;i++){
+let heart=document.createElement("div");
+heart.classList.add("heartGame");
+heart.innerHTML="💖";
+heart.style.left=Math.random()*90+"vw";
+heart.style.top=Math.random()*80+"vh";
+heart.onclick=function(){
+heart.remove();
+count++;
+if(count==5){
+document.getElementById("secondPage").style.display="block";
+}}
+document.body.appendChild(heart);
+}}
+
+/* LOVE LETTER */
+let letterMessage=`Unna paatha apram dhaan enaku love na enna nu purinjuchu…
+Nee pesina odane en mind seri aayidum.
+Naan strong nu nadikkaren, aana un kitta dhaan naan real ah iruken.
+“Nan iruken” nu nee sonna podhum, en bayam ellam maranjidum.
+Nee enaku boyfriend illa… en safe place.
+Un kooda dhaan en future irukanum nu daily wish panren. Love you💙✨💍❤️`;
+let letterIndex=0;
+
+function typeLetter(){
+if(letterIndex<letterMessage.length){
+document.getElementById("letterText").innerHTML+=letterMessage.charAt(letterIndex);
+letterIndex++;
+setTimeout(typeLetter,40);
+}}
+
+function launchFireworks(){
+for(let i=0;i<20;i++){
+let fw=document.createElement("div");
+fw.classList.add("firework");
+fw.innerHTML="✨";
+fw.style.top=Math.random()*100+"vh";
+fw.style.left=Math.random()*100+"vw";
+document.body.appendChild(fw);
+setTimeout(()=>fw.remove(),1000);
+}}
+
+function openLetter(){
+document.getElementById("secondPage").style.display="none";
+document.getElementById("loveLetterPage").style.display="block";
+letterIndex=0;
+document.getElementById("letterText").innerHTML="";
+launchFireworks();
+typeLetter();
+}
+
+function closeLetter(){
+document.getElementById("loveLetterPage").style.display="none";
+document.getElementById("mainContent").style.display="block";
+}
+
+/* STARS */
+for(let i=0;i<100;i++){
+let star=document.createElement("div");
+star.classList.add("star");
+star.style.top=Math.random()*100+"vh";
+star.style.left=Math.random()*100+"vw";
+document.body.appendChild(star);
+}
+</script>
+
+</body>
+</html>
